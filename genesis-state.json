@@ -1,0 +1,33 @@
+{
+  "state": {
+    "users": {
+      "0x94bE2330e995A6A1ef2b563E801Ec04AA9DE03DE": { "USDC": 500, "ETH": 100 },
+      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": { "USDC": 250, "ETH": 50 },
+      "0x955b3860E4852efDF3feaCc50B6eB3FA60BFED43": { "USDC": 100, "ETH": 20 },
+      "0xA1bb5D3b34910a774833Ec6E8ac02254855d04C7": { "USDC": 50, "ETH": 10 }
+    },
+    "bids": [
+      {
+        "id": 1,
+        "user": "0x955b3860E4852efDF3feaCc50B6eB3FA60BFED43",
+        "orderType": "Bid",
+        "price": 5,
+        "quantity": 10,
+        "filled": 0,
+        "timestamp": 1720270433422
+      }
+    ],
+    "asks": [
+      {
+        "id": 1,
+        "user": "0xA1bb5D3b34910a774833Ec6E8ac02254855d04C7",
+        "orderType": "Ask",
+        "price": 3,
+        "quantity": 8,
+        "filled": 0,
+        "timestamp": 1720270433422
+      }
+    ],
+    "filledOrders": []
+  }
+}
