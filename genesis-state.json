@@ -7,26 +7,8 @@
       "0xA1bb5D3b34910a774833Ec6E8ac02254855d04C7": { "USDC": 50, "ETH": 10 }
     },
     "bids": [
-      {
-        "id": 1,
-        "user": "0x955b3860E4852efDF3feaCc50B6eB3FA60BFED43",
-        "orderType": "Bid",
-        "price": 5,
-        "quantity": 10,
-        "filled": 0,
-        "timestamp": 1720270433422
-      }
     ],
     "asks": [
-      {
-        "id": 1,
-        "user": "0xA1bb5D3b34910a774833Ec6E8ac02254855d04C7",
-        "orderType": "Ask",
-        "price": 3,
-        "quantity": 8,
-        "filled": 0,
-        "timestamp": 1720270433422
-      }
     ],
     "filledOrders": []
   }
