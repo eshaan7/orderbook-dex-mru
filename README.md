@@ -1,4 +1,4 @@
-# orderbook-dex-mru
+# orderbook-dex-mru (rekt.trade)
 
 > This project is for submission in ETHGlobal Brussels 2024 hackathon.
 
