@@ -1,11 +1,16 @@
 # orderbook-dex-mru
 
-An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability and settles to Ethereum. Supports limit bid and ask orders.
+> This project is for submission in ETHGlobal Brussels 2024 hackathon.
 
-This system has 3 primary components:
-- The orderbook micro-rollup hosted as a node.js service which contains the state machine.
-- The orderbook state machine hosted as a public Fleek function. Useful for auditability and simulation purposes for third parties.
-- Third party sequencers (aka searchers) which order actions for the rollup. Deployed as Fleek functions to showcase external actors.
+An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability and settles to Ethereum. 
+
+The orderbook supports limit bid and ask orders.
+
+This system has the following 4 primary components built using 3 different stacks (Stackr, Fleek network, Forta):
+- The orderbook micro-rollup hosted as a node.js service. This includes sequencer, state machine and executor.
+- The orderbook state machine hosted as a public Fleek function. Useful for auditability and simulation purposes by external actors.
+- Third party searchers which order transactions for the rollup. Deployed as Fleek functions to simulate external actors.
+- A Forta bot that checks that the rollup is actually publishing its data to Avail DA.
 
 ### Architecture
 
@@ -44,7 +49,7 @@ $~/orderbook-dex-mru >> bun run src/index.ts
 
 #### Description
 
-This bot detects transactions on Ethereum that have a `BatchSubmitted` event from given Micro-Rollup's `AppInbox` contract address. It queries Avail's RPC to verify that the data was indeed published on the Avail DA corresponding to this rollup Batch. A finding is created if the data is available and correct.
+This bot detects transactions on Ethereum that have a `BatchSubmitted` event from given Micro-Rollup's `AppInbox` contract address. It queries Avail's RPC to verify that the data was indeed published on the Avail DA corresponding to this rollup Batch. A finding is created if the data is available an`d correct.
 
 #### Supported Chains
 
