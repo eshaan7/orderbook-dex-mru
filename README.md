@@ -1,6 +1,6 @@
 # orderbook-dex-mru
 
-An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability. Supports limit bid and ask orders.
+An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability and settles to Ethereum. Supports limit bid and ask orders.
 
 This system has 3 primary components:
 - The orderbook micro-rollup hosted as a node.js service which contains the state machine.
