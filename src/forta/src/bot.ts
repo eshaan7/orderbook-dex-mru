@@ -7,14 +7,14 @@ import {
   FindingType,
   scanEthereum,
 } from "@fortanetwork/forta-bot";
-import { initialize, extractData, chain, } from "avail-js-sdk"
-import * as deployment from "../../../deployment.json";
+import { initialize, extractData } from "avail-js-sdk"
+// import * as deployment from "../../../deployment.json";
 
 // todo: move to .env
-const MRU_URL = "https://cc40-217-111-214-66.ngrok-free.app";
+const MRU_URL = "https://21f0-217-111-214-66.ngrok-free.app";
 const APPINBOX_BATCH_SUBMITTED_EVENT =
   "event BatchSubmitted(uint256 indexed batchHeight, bytes32 indexed batchRoot, uint256 indexed lastBlockHeight, uint256 firstBlockHeight, bytes32 stateRoot)";
-const APPINBOX_ADDRESS = deployment.appInbox;
+const APPINBOX_ADDRESS = "0x7b1Fe548BCFf9876a00168388198c757ABDEF2b9"
 
 const getBatchInfoFromMRU = async (batchHash: string): Promise<any> => {
   const response = await fetch(`${MRU_URL}/batch/${batchHash}`, {
@@ -27,24 +27,25 @@ const getBatchInfoFromMRU = async (batchHash: string): Promise<any> => {
 };
 
 const queryAvail = async (blockNum: number, extId: number) => {
-  const AVAIL_RPC_ENDPOINT = "wss://turing-rpc.avail.so/ws"
-  const API_SCAN_BLOCK = "https://avail-turing.webapi.subscan.io/api/scan/block"
-  const API_SCAN_EXTRINSICS = "https://avail-turing.webapi.subscan.io/api/v2/scan/extrinsics"
+  const AVAIL_RPC_ENDPOINT = "wss://turing-rpc.avail.so/ws";
+  const API_SCAN_BLOCK = "https://avail-turing.webapi.subscan.io/api/scan/block";
+  const API_SCAN_EXTRINSICS = "https://avail-turing.webapi.subscan.io/api/v2/scan/extrinsics";
 
   const responseBlocks = await fetch(API_SCAN_BLOCK, { method: "POST", headers: { "Content-type": "application/json", "Accept": "application/json", }, body: JSON.stringify({ "only_head": true, "block_num": blockNum }) });
   const blockHash = (await responseBlocks.json() as any).data.hash as string;
-  const responseExt = await fetch(API_SCAN_EXTRINSICS, { method: "POST", headers: { "Content-type": "application/json", "Accept": "application/json", }, body: JSON.stringify({ "page": 0, "row": 10, "block_num": blockNum, "order": "asc" }) })
-  const extHash = (await responseExt.json() as any).data.extrinsics[extId].extrinsic_hash as string;
-  console.log("BlockHash:", blockHash)
-  console.log("Extrinsic Hash:", extHash)
+  const page = Math.floor(extId / 10);
+  const responseExt = await fetch(API_SCAN_EXTRINSICS, { method: "POST", headers: { "Content-type": "application/json", "Accept": "application/json", }, body: JSON.stringify({ "page": page, "row": 10, "block_num": blockNum, "order": "asc" }) });
+  const extHash = (await responseExt.json() as any).data.extrinsics[extId - 10 * page].extrinsic_hash as string;
+  console.log("BlockHash:", blockHash);
+  console.log("Extrinsic Hash:", extHash);
 
-  const api = await initialize(AVAIL_RPC_ENDPOINT)
-  const dataProof = await (api.rpc as any).kate.queryDataProof(extId, blockHash)
-  console.log(`Header: ${JSON.stringify(dataProof, undefined, 2)}`)
-  const data = await extractData(api, blockHash, extHash)
-  console.log(`Data: ${data}`)
+  const api = await initialize(AVAIL_RPC_ENDPOINT);
+  const dataProof = await (api.rpc as any).kate.queryDataProof(extId, blockHash);
+  console.log(`Header: ${JSON.stringify(dataProof, undefined, 2)}`);
+  const data = await extractData(api, blockHash, extHash);
+  console.log(`Data: ${data}`);
 
-  return { blockHash, extHash, dataProof, data: JSON.parse(data) }
+  return { blockHash, extHash, dataProof, data: JSON.parse(data) };
 }
 
 export const handleTransaction: HandleTransaction = async (
