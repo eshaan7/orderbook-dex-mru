@@ -9,7 +9,9 @@ interface UnpackedAction {
 }
 
 const STF_FLEEK_FUNCTION = "https://orderbook-stf.functions.on-fleek.app";
+// todo: move to .env
 const MRU_URL = "https://15de-213-137-138-111.ngrok-free.app";
+// anvil #1 key so not a security risk
 const ADDRESS = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 const PRIVATE_KEY =
   "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
