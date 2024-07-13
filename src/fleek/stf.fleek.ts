@@ -1,5 +1,6 @@
 import { orderbookStateMachine as stateMachine } from "../stackr/machine.ts";
 
+// state machine executor
 function run(block, actions, prevState, hooks) {
   stateMachine.disableLogging?.(true);
   stateMachine.updateState(prevState);
@@ -25,6 +26,7 @@ function run(block, actions, prevState, hooks) {
   return { state, root };
 }
 
+// entrypoint
 export const main = async (params) => {
   const { method, body } = params;
   if (method === "GET") {

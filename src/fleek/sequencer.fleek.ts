@@ -127,6 +127,7 @@ const injectMevTrade = async (state: OrderBook) => {
   }
 };
 
+// entrypoint
 export const main = async (params: {
   method: string;
   body: { actions: UnpackedAction[] };
