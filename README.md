@@ -2,7 +2,7 @@
 
 > This project is for submission in ETHGlobal Brussels 2024 hackathon.
 
-An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability and settles to Ethereum. 
+An Orderbook DEX implemented as a Micro-Rollup using [@stackr/sdk](https://www.stackrlabs.xyz/) that uses [Avail](https://www.availproject.org/da) for Data Availability (DA) and settles to Ethereum. 
 
 The orderbook supports limit bid and ask orders.
 
@@ -10,7 +10,7 @@ This system has the following 4 primary components built using 3 different stack
 - The orderbook micro-rollup hosted as a node.js service. This includes sequencer, state machine and executor.
 - The orderbook state machine hosted as a public Fleek function. Useful for auditability and simulation purposes by external actors.
 - Third party searchers which order transactions for the rollup. Deployed as Fleek functions to simulate external actors.
-- A Forta bot that monitors Ethereum checking that the rollup is actually publishing its data to Avail DA.
+- A Forta bot that monitors Ethereum for incoming batches from the rollup and checks that these batches' data is actually available on Avail DA.
 
 ### Architecture
 
