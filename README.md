@@ -10,7 +10,7 @@ This system has the following 4 primary components built using 3 different stack
 - The orderbook micro-rollup hosted as a node.js service. This includes sequencer, state machine and executor.
 - The orderbook state machine hosted as a public Fleek function. Useful for auditability and simulation purposes by external actors.
 - Third party searchers which order transactions for the rollup. Deployed as Fleek functions to simulate external actors.
-- A Forta bot that checks that the rollup is actually publishing its data to Avail DA.
+- A Forta bot that monitors Ethereum checking that the rollup is actually publishing its data to Avail DA.
 
 ### Architecture
 
@@ -49,7 +49,7 @@ $~/orderbook-dex-mru >> bun run src/index.ts
 
 #### Description
 
-This bot detects transactions on Ethereum that have a `BatchSubmitted` event from given Micro-Rollup's `AppInbox` contract address. It queries Avail's RPC to verify that the data was indeed published on the Avail DA corresponding to this rollup Batch. A finding is created if the data is available an`d correct.
+This bot detects transactions on Ethereum that have a `BatchSubmitted` event from given Micro-Rollup's `AppInbox` contract address. It queries Avail's RPC to verify that the data was indeed published on the Avail DA corresponding to this rollup Batch. A finding is created if the data is available and correct.
 
 #### Supported Chains
 
