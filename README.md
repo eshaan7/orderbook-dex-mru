@@ -39,3 +39,28 @@ $~/orderbook-dex-mru >> stackr deploy
 ```bash
 $~/orderbook-dex-mru >> bun run src/index.ts
 ```
+
+### Forta: Data availability checker bot
+
+#### Description
+
+This bot detects transactions on Ethereum that have a `BatchSubmitted` event from given Micro-Rollup's `AppInbox` contract address. It queries Avail's RPC to verify that the data was indeed published on the Avail DA corresponding to this rollup Batch. A finding is created if the data is available and correct.
+
+#### Supported Chains
+
+- Ethereum (and testnets)
+
+#### Alerts
+
+Describe each of the type of alerts fired by this bot
+
+- FORTA-1
+  - Fired when a transaction contains a `BatchSubmitted` event from Micro-Rollup's AppInbox contract and we have verified that the data does exist on Avail DA.
+
+#### Test Data
+
+The bot behaviour can be verified with the following transactions:
+
+```bash
+$~/orderbook-dex-mru/src/forta >> FORTA_CHAIN_ID=69420 npm run tx 0x0002ec20286b4c08a4c614b2ac57afac6f947d5d5f87ea8064d223d1b3b70ef1 --chainId 69420
+```
