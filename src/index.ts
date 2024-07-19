@@ -6,7 +6,6 @@ import { transitions } from "./stackr/transitions.ts";
 import { mru } from "./stackr/mru.ts";
 import { cli } from "./cli.ts";
 import { Playground } from "@stackr/sdk/plugins";
-import { readBatchInfo } from "./utils.ts";
 
 dotenv.config();
 
@@ -58,13 +57,6 @@ const api = async () => {
       domain: mru.config.domain,
     });
   });
-
-  app.get("/batch/:batchHash", async (_req: Request, res: Response) => {
-    const { batchHash } = _req.params;
-    const rows = await readBatchInfo(batchHash);
-    const daMetadata = rows[0]?.daMetadata ? JSON.parse(rows[0]?.daMetadata) : {};
-    return res.send({ daMetadata });
-  })
 
   // Start the server
   const port = parseInt(process.env.PORT || "3000");

@@ -67,5 +67,5 @@ Describe each of the type of alerts fired by this bot
 The bot behaviour can be verified with the following transactions:
 
 ```bash
-$~/orderbook-dex-mru/src/forta >> FORTA_CHAIN_ID=69420 npm run tx 0x0002ec20286b4c08a4c614b2ac57afac6f947d5d5f87ea8064d223d1b3b70ef1 --chainId 69420
+$~/orderbook-dex-mru/src/forta >> FORTA_CHAIN_ID=69420 npm run tx 0x5332f5d132561213181d7d159bfef3ceb22c01e1162257a003bf8013193816bb
 ```
